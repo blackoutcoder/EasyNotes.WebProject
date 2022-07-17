@@ -29,9 +29,10 @@ ___
 
 
 <h3 align="center">Main window</h3>
-![Prm](https://user-images.githubusercontent.com/94862044/179403584-e710d5bc-7dfc-4fe9-a36f-85a8c4d12942.png)
+
 <img src="![image](https://user-images.githubusercontent.com/94862044/179403387-3b55e1da-650c-4ec7-be38-66ca992ec730.png)
 "/>
+![Prm](https://user-images.githubusercontent.com/94862044/179403584-e710d5bc-7dfc-4fe9-a36f-85a8c4d12942.png)
 
 ## Requirements for Run
 
