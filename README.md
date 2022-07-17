@@ -16,12 +16,13 @@ ___
 ## Used C# technologies
 
 + ### C# 11 
-+ ### .Net Framework v5.0
++ ### .Net Framework v6.07
 + ### Entity Framework v5.02
 + ### SQLite
 + ### ASP.NET Core Razor Pages
 + ### ASP.NET Core Static Files v2.2.0
 + ### ASP.NET Core Mvc v5.2.9
++ ### ASP.NET Core Identity 
 + ### Bootstrap v5.2.0
 
 
