@@ -28,7 +28,8 @@ ___
 
 
 <h3 align="center">Main window</h3>
-<img src=""/>
+<img src="![image](https://user-images.githubusercontent.com/94862044/179403387-3b55e1da-650c-4ec7-be38-66ca992ec730.png)
+"/>
 
 ## Requirements for Run
 
