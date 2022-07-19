@@ -1,4 +1,5 @@
 ﻿using EasyNotes.WebApp_MVC_.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -19,6 +20,18 @@ namespace EasyNotes.WebApp_MVC_.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Notes()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Categories()
         {
             return View();
         }
