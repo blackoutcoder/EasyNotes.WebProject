@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Note>
+@{
+    ViewData["Title"] = "Notes";
+}
+
+<h1>Notes</h1>
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Content</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td width="50%">
+                    @obj.Name
+                </td>
+                <td width="50%">
+                    @obj.Content
+                </td>
+                <td width="50%">
+                    @obj.Category
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
