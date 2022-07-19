@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyNotes.WebApp_MVC_.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220717153158_InitApplicationUser")]
+    [Migration("20220718100929_InitApplicationUser")]
     partial class InitApplicationUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
