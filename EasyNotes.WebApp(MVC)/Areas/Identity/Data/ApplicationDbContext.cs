@@ -1,6 +1,4 @@
-﻿using EasyNotes.WebApp_MVC_.Areas.Identity.Data;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -12,7 +10,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         : base(options)
     {
     }
-
+    public DbSet<EasyNotes.WebApp_MVC_.Data.Entities.Note>? Notes { get; set; }
+    public DbSet<EasyNotes.WebApp_MVC_.Data.Entities.Category>? Categories { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -32,3 +31,4 @@ public class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<Appli
         builder.Property(u => u.LastName).HasMaxLength(255);
     }
 }
+

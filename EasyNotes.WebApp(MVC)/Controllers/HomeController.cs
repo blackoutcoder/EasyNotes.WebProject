@@ -1,5 +1,4 @@
 ﻿using EasyNotes.WebApp_MVC_.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -24,18 +23,22 @@ namespace EasyNotes.WebApp_MVC_.Controllers
             return View();
         }
 
-        [Authorize]
-        public IActionResult Notes()
+        /* [Authorize(Roles ="User")]
+         public IActionResult Notes()
+         {
+             return View();
+         }
+
+         [Authorize]
+         public IActionResult Categories()
+         {
+             return View();
+         }*/
+        /*[HttpGet("login")]
+        public IActionResult Login()
         {
             return View();
-        }
-
-        [Authorize]
-        public IActionResult Categories()
-        {
-            return View();
-        }
-
+        }*/
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
