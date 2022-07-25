@@ -5,12 +5,28 @@
 
 <h1>Notes</h1>
 
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h4 class="text-primary">Notes List</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Notes" asp-action="Create" class="btn btn-primary ">
+                <i class="bi bi-plus-circle"></i>  &nbsp;  Create New Note
+            </a>
+        </div>
+    </div>
+    <br/>
+   
+
 <table class="table table-bordered table-striped" style="width:100%">
     <thead>
         <tr>
             <th>Name</th>
-            <th>Content</th>
+            <th>Message</th>
             <th>Category</th>
+            <th>Picture</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -24,9 +40,13 @@
                     @obj.Content
                 </td>
                 <td width="50%">
-                    @obj.Category
+                    @obj.CategoryName
+                </td>
+                <td width="100%">
+                    @obj.Img
                 </td>
             </tr>
         }
     </tbody>
 </table>
+</div>
