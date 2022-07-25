@@ -9,6 +9,10 @@
     @if(@User.Identity.IsAuthenticated)
     {
         <h4>Hello @User.Identity.Name </h4>
-        
+
+    }
+    else
+    {
+        <h4>Problems with registration? Use our <a class="text-danger" href="../PublicNotes">Public</a> message board</h4>
     }
 </div>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace EasyNotes.WebApp.Mvc.Models
 {
@@ -7,9 +8,10 @@ namespace EasyNotes.WebApp.Mvc.Models
         [Key]
         public uint Id { get; set; }
         [Required]
+        [DisplayName("Catergory Name")]
         public string CategoryName { get; set; }
         public string ?Description { get; set; }
-        //public List<Note> ?Notes { get; set; }
-        public Guid ?UserID { get; set; }
+        //public List<Note>? Notes { set; get; }
+        public string? UserName { get; set; }
     }
 }

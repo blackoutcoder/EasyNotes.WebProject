@@ -26,29 +26,26 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Notes" asp-action="Index">Notes</a>
+                            <a  class="nav-link text-white" asp-area="" asp-controller="Notes" asp-action="Index">Notes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Category" asp-action="Index">Categories</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
                         </li>
                          <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="PublicNotes" asp-action="Index">Public</a>
                         </li>
                         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Contacts</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="https://www.codewars.com/users/blackoutcoder">Follow me on CodeWars</a>
+            <a class="dropdown-item" href="https://www.linkedin.com/in/roman-repic-174b44173/">Follow me on LinkedIn</a>
+            <a class="dropdown-item" href="https://github.com/blackoutcoder">Visit me on GitHub</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
+            <a class="dropdown-item" href="#">For Admins</a>
           </div>
         </li>  
                         <li class="nav-item">
-                            <form class="d-flex">
-        <input class="form-control me-sm-2" type="text" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form>
+                           
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -58,6 +55,7 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            <partial name="_Notifications" />
             @RenderBody()
         </main>
     </div>

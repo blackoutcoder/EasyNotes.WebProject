@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PublicNote>
+@{
+    ViewData["Title"] = "Public Notes";
+}
+
+<h1>Public Notes</h1>
+
+<h3>Your notes will stay here forever!</h3>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h4 class="text-primary">Notes List</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="PublicNotes" asp-action="Create" class="btn btn-primary ">
+                <i class="bi bi-plus-circle"></i>  &nbsp;  Create New Note
+            </a>
+        </div>
+    </div>
+    <br/>
+   
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Message</th>
+            <th>Create Date/Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td width="50%">
+                    @obj.Name
+                </td>
+                <td width="50%">
+                    @obj.Content
+                </td>
+                 <td width="50%">
+                    @obj.CreateDate
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

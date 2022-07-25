@@ -13,8 +13,7 @@ namespace EasyNotes.WebApp.Mvc.Data
 
         public DbSet<Note> Notes { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<PublicNote> PublicNotes { get; set; }
     }
-
-
 
 }

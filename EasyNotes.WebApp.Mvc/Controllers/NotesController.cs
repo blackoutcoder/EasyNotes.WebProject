@@ -17,13 +17,21 @@ namespace EasyNotes.WebApp.Mvc.Controllers
         [Authorize]
         public IActionResult Index()
         {
+            var notesList = new List<Note>();
             var userName = User.Identity.Name;
-            IEnumerable<Note> objNotesList = _context.Notes.ToList();
-            
+            //IEnumerable<Note> objNotesList = _context.Notes.ToList();
+            foreach(Note note in _context.Notes)
+            {
+                if (note.UserName == userName)
+                {
+                    notesList.Add(note);
+                }
+            }
+                
 
 
 
-            return View(objNotesList);
+            return View(notesList);
         }
 
         //GET
@@ -43,7 +51,7 @@ namespace EasyNotes.WebApp.Mvc.Controllers
                 obj.UserName = User.Identity.Name.ToLower();
                 _context.Notes.Add(obj);
                 _context.SaveChanges();
-                TempData["Success"] = "Note successfully created!";
+                TempData["success"] = "Note successfully created!";
                 return RedirectToAction("Index");
             }
             
@@ -76,9 +84,10 @@ namespace EasyNotes.WebApp.Mvc.Controllers
 
             if (ModelState.IsValid)
             {
+                obj.UserName = User.Identity.Name.ToLower();
                 _context.Notes.Update(obj);
                 _context.SaveChanges();
-                TempData["Success"] = "Note successfully updated!";
+                TempData["success"] = "Note successfully updated!";
                 return RedirectToAction("Index");
             }
 
@@ -115,7 +124,7 @@ namespace EasyNotes.WebApp.Mvc.Controllers
             }
             _context.Notes.Remove(obj);
             _context.SaveChanges();
-            TempData["Success"] = "Note successfully deleted!";
+            TempData["success"] = "Note successfully deleted!";
             return RedirectToAction("Index");
         }
     }

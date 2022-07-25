@@ -49,6 +49,20 @@ namespace EasyNotes.WebApp.Mvc.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PublicNotes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PublicNotes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -162,7 +176,7 @@ namespace EasyNotes.WebApp.Mvc.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NoteId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
@@ -270,6 +284,9 @@ namespace EasyNotes.WebApp.Mvc.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "PublicNotes");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
