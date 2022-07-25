@@ -43,6 +43,7 @@ namespace EasyNotes.WebApp.Mvc.Controllers
                 obj.UserName = User.Identity.Name.ToLower();
                 _context.Notes.Add(obj);
                 _context.SaveChanges();
+                TempData["Success"] = "Note successfully created!";
                 return RedirectToAction("Index");
             }
             
@@ -77,6 +78,7 @@ namespace EasyNotes.WebApp.Mvc.Controllers
             {
                 _context.Notes.Update(obj);
                 _context.SaveChanges();
+                TempData["Success"] = "Note successfully updated!";
                 return RedirectToAction("Index");
             }
 
@@ -102,7 +104,7 @@ namespace EasyNotes.WebApp.Mvc.Controllers
         }
 
         //POST
-        [HttpPost]
+        [HttpPost, ActionName("DeletePOST")]
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(uint? id)
         {
@@ -113,6 +115,7 @@ namespace EasyNotes.WebApp.Mvc.Controllers
             }
             _context.Notes.Remove(obj);
             _context.SaveChanges();
+            TempData["Success"] = "Note successfully deleted!";
             return RedirectToAction("Index");
         }
     }
