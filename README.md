@@ -17,7 +17,7 @@ ___
 
 + ### C# 11 
 + ### .Net Framework v6.07
-+ ### Entity Framework v5.02
++ ### Entity Framework v6.07
 + ### SQLite
 + ### ASP.NET Core Razor Pages
 + ### ASP.NET Core Static Files v2.2.0
