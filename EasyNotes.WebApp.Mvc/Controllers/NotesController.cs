@@ -17,11 +17,12 @@ namespace EasyNotes.WebApp.Mvc.Controllers
         [Authorize]
         public IActionResult Index()
         {
-
-            IEnumerable<Note> objNotesList = _context.Notes
-                
-                .ToList(); 
+            var userName = User.Identity.Name;
+            IEnumerable<Note> objNotesList = _context.Notes.ToList();
             
+
+
+
             return View(objNotesList);
         }
 
@@ -39,13 +40,80 @@ namespace EasyNotes.WebApp.Mvc.Controllers
             
             if (ModelState.IsValid)
             {
-                obj.UserName = User.Identity.Name;
+                obj.UserName = User.Identity.Name.ToLower();
                 _context.Notes.Add(obj);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
             
             return View(obj);
+        }
+
+        //GET
+        public IActionResult Edit(uint? id)
+        {
+            if(id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var noteFromDb = _context.Notes.Find(id);
+            /*var noteFromDbFirst = _context.Notes.FirstOrDefault(x => x.Id == id);
+            var noteFromDbSingle = _context.Notes.SingleOrDefault(x => x.Id == id);*/
+
+            if(noteFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(noteFromDb);
+        }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Note obj)
+        {
+
+            if (ModelState.IsValid)
+            {
+                _context.Notes.Update(obj);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(obj);
+        }
+
+        //GET
+        public IActionResult Delete(uint? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var noteFromDb = _context.Notes.Find(id);
+            /*var noteFromDbFirst = _context.Notes.FirstOrDefault(x => x.Id == id);
+            var noteFromDbSingle = _context.Notes.SingleOrDefault(x => x.Id == id);*/
+
+            if (noteFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(noteFromDb);
+        }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePOST(uint? id)
+        {
+            var obj = _context.Notes.Find(id);
+            if(obj == null)
+            {
+                return NotFound();
+            }
+            _context.Notes.Remove(obj);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

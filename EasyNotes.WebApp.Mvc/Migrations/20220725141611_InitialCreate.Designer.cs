@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyNotes.WebApp.Mvc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220725091136_InitialCreate")]
+    [Migration("20220725141611_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,11 +26,11 @@ namespace EasyNotes.WebApp.Mvc.Migrations
 
             modelBuilder.Entity("EasyNotes.WebApp.Mvc.Models.Category", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
@@ -39,24 +39,29 @@ namespace EasyNotes.WebApp.Mvc.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserID")
+                    b.Property<long?>("NoteId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("UserID")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NoteId");
 
                     b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("EasyNotes.WebApp.Mvc.Models.Note", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
+                    b.Property<long?>("CategoryId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("CategoryName")
                         .HasColumnType("nvarchar(max)");
@@ -72,11 +77,7 @@ namespace EasyNotes.WebApp.Mvc.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserID")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -288,10 +289,17 @@ namespace EasyNotes.WebApp.Mvc.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("EasyNotes.WebApp.Mvc.Models.Category", b =>
+                {
+                    b.HasOne("EasyNotes.WebApp.Mvc.Models.Note", null)
+                        .WithMany("Categories")
+                        .HasForeignKey("NoteId");
+                });
+
             modelBuilder.Entity("EasyNotes.WebApp.Mvc.Models.Note", b =>
                 {
                     b.HasOne("EasyNotes.WebApp.Mvc.Models.Category", "Category")
-                        .WithMany("Notes")
+                        .WithMany()
                         .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
@@ -348,9 +356,9 @@ namespace EasyNotes.WebApp.Mvc.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EasyNotes.WebApp.Mvc.Models.Category", b =>
+            modelBuilder.Entity("EasyNotes.WebApp.Mvc.Models.Note", b =>
                 {
-                    b.Navigation("Notes");
+                    b.Navigation("Categories");
                 });
 #pragma warning restore 612, 618
         }
