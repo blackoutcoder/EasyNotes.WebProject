@@ -31,7 +31,7 @@ ___
 
 <h3 align="center">Main window</h3>
 
-![EasyNotesHome](https://user-images.githubusercontent.com/94862044/179860159-38cf13aa-40ea-4ca1-b9ff-3849414504c0.jpg)
+![EasyNotesHome](https://user-images.githubusercontent.com/94862044/180862604-a255cd30-0598-4ba2-aeeb-9f616200954f.jpg)
 
 
 
