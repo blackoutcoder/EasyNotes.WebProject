@@ -17,7 +17,7 @@ namespace EasyNotes.WebApp.Mvc.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.5")
+                .HasAnnotation("ProductVersion", "6.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -40,8 +40,8 @@ namespace EasyNotes.WebApp.Mvc.Migrations
                     b.Property<long?>("NoteId")
                         .HasColumnType("bigint");
 
-                    b.Property<Guid?>("UserID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -83,6 +83,28 @@ namespace EasyNotes.WebApp.Mvc.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Notes");
+                });
+
+            modelBuilder.Entity("EasyNotes.WebApp.Mvc.Models.PublicNote", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PublicNotes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
