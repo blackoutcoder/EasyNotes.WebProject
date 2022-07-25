@@ -24,6 +24,7 @@ ___
 + ### ASP.NET Core Mvc v5.2.9
 + ### ASP.NET Core Identity 
 + ### Bootstrap v5.2.0
++ ### toastr Js library v2.1.4
 
 
 
