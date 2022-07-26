@@ -42,7 +42,7 @@ ___
 
 ## Run example
 ### Run already compiled project
-1. Download package from GitHub packages repository [EasyNotes.WebApp.Executable](https://github.com/blackoutcoder) .
+1. Watch publication on Azure - [EasyNotes.com](https://github.com/blackoutcoder) .
 2. Double-click on downloaded package with `*.exe` extension.
 3. Now you should to see the main window of application
 
