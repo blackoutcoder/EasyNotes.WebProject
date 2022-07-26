@@ -43,8 +43,7 @@ ___
 ## Run example
 ### Run already compiled project
 1. Watch publication on Azure - [EasyNotes.com](https://github.com/blackoutcoder) .
-2. Double-click on downloaded package with `*.exe` extension.
-3. Now you should to see the main window of application
+
 
 
 ## Contact
