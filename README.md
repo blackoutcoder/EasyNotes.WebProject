@@ -42,7 +42,7 @@ ___
 
 ## Run example
 ### Run already compiled project
-1. Watch publication on Azure - [EasyNotes.com](https://github.com/blackoutcoder) .
+1. Watch publication on Azure - [EasyNotes.com](https://easynoteswebappmvc.azurewebsites.net/) .
 
 
 
