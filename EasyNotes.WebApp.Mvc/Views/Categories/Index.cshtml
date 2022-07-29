@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<h1>Categories</h1>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h4 class="text-primary">Categories List</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Categories" asp-action="Create" class="btn btn-success ">
+                <i class="bi bi-plus-circle"></i>  &nbsp;  Create New Categorie
+            </a>
+        </div>
+    </div>
+    <br/>
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Notes List</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td width="50%">
+                    @obj.CategoryName
+                </td>
+                <td width="50%">
+                    @obj.Description
+                </td>
+                 <td width="50%">
+                    @obj.Notes
+                </td>
+                <td>
+                    <div class="w-100 btn-group" role="group">
+                        <a asp-controller="Categories" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-outline-success mx-1 mt-1"><i class="bi bi-pencil-square"></i>Edit</a>
+                        <a asp-controller="Categories" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-outline-danger mt-1 mx-1"><i class="bi bi-trash"></i>Delete</a>
+                    </div>
+                     <div class="w-100 btn-group" role="group">
+                        
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

@@ -27,11 +27,12 @@ namespace EasyNotes.WebApp.Mvc.Controllers
                     notesList.Add(note);
                 }
             }
-                
-
-
-
             return View(notesList);
+        }
+
+        public IActionResult UploadImage()
+        {
+            return View();
         }
 
         //GET
@@ -43,25 +44,26 @@ namespace EasyNotes.WebApp.Mvc.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Note obj)
+        public IActionResult Create(Note note)
         {
             
             if (ModelState.IsValid)
             {
-                obj.UserName = User.Identity.Name.ToLower();
-                _context.Notes.Add(obj);
+                note.UserName = User.Identity.Name.ToLower();
+                note.Category.UserName = User.Identity.Name.ToLower();
+                _context.Notes.Add(note);
                 _context.SaveChanges();
                 TempData["success"] = "Note successfully created!";
                 return RedirectToAction("Index");
             }
             
-            return View(obj);
+            return View(note);
         }
 
         //GET
-        public IActionResult Edit(uint? id)
+        public IActionResult Edit(Guid? id)
         {
-            if(id == null || id == 0)
+            if(id == null || id == Guid.Empty)
             {
                 return NotFound();
             }
@@ -79,25 +81,27 @@ namespace EasyNotes.WebApp.Mvc.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Note obj)
+        public IActionResult Edit(Note note)
         {
 
             if (ModelState.IsValid)
             {
-                obj.UserName = User.Identity.Name.ToLower();
-                _context.Notes.Update(obj);
+                /*obj.UserName = User.Identity.Name.ToLower();
+                obj.Category.UserName = User.Identity.Name.ToLower();*/
+                
+                _context.Notes.Update(note);
                 _context.SaveChanges();
                 TempData["success"] = "Note successfully updated!";
                 return RedirectToAction("Index");
             }
 
-            return View(obj);
+            return View(note);
         }
 
         //GET
-        public IActionResult Delete(uint? id)
+        public IActionResult Delete(Guid? id)
         {
-            if (id == null || id == 0)
+            if (id == null || id == Guid.Empty)
             {
                 return NotFound();
             }
@@ -115,7 +119,7 @@ namespace EasyNotes.WebApp.Mvc.Controllers
         //POST
         [HttpPost, ActionName("DeletePOST")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeletePOST(uint? id)
+        public IActionResult DeletePOST(Guid? id)
         {
             var obj = _context.Notes.Find(id);
             if(obj == null)

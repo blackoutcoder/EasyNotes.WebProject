@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyNotes.WebApp(MVC)", "Ea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyNotes.WebApp.Mvc", "EasyNotes.WebApp.Mvc\EasyNotes.WebApp.Mvc.csproj", "{C66E555C-A69A-456A-846F-4E6A91D02F23}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyNotes.WebAPI", "EasyNotes.WebAPI\EasyNotes.WebAPI.csproj", "{F7A6B25C-05F2-4A75-9161-7AABC014CFDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyNotes.WebAplication", "EasyNotes.WebAplication\EasyNotes.WebAplication.csproj", "{0EDEB2EE-1956-479B-8F42-268B52677222}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{C66E555C-A69A-456A-846F-4E6A91D02F23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C66E555C-A69A-456A-846F-4E6A91D02F23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C66E555C-A69A-456A-846F-4E6A91D02F23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7A6B25C-05F2-4A75-9161-7AABC014CFDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7A6B25C-05F2-4A75-9161-7AABC014CFDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7A6B25C-05F2-4A75-9161-7AABC014CFDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7A6B25C-05F2-4A75-9161-7AABC014CFDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EDEB2EE-1956-479B-8F42-268B52677222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EDEB2EE-1956-479B-8F42-268B52677222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EDEB2EE-1956-479B-8F42-268B52677222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EDEB2EE-1956-479B-8F42-268B52677222}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

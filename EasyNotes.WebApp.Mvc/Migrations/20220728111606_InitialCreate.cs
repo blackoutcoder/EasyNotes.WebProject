@@ -49,6 +49,20 @@ namespace EasyNotes.WebApp.Mvc.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PublicNotes",
                 columns: table => new
                 {
@@ -169,32 +183,14 @@ namespace EasyNotes.WebApp.Mvc.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Categories",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NoteId = table.Column<long>(type: "bigint", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Notes",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Img = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CategoryId = table.Column<long>(type: "bigint", nullable: true),
+                    CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -247,29 +243,13 @@ namespace EasyNotes.WebApp.Mvc.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Categories_NoteId",
-                table: "Categories",
-                column: "NoteId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Notes_CategoryId",
                 table: "Notes",
                 column: "CategoryId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Categories_Notes_NoteId",
-                table: "Categories",
-                column: "NoteId",
-                principalTable: "Notes",
-                principalColumn: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Categories_Notes_NoteId",
-                table: "Categories");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -286,6 +266,9 @@ namespace EasyNotes.WebApp.Mvc.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Notes");
+
+            migrationBuilder.DropTable(
                 name: "PublicNotes");
 
             migrationBuilder.DropTable(
@@ -293,9 +276,6 @@ namespace EasyNotes.WebApp.Mvc.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Notes");
 
             migrationBuilder.DropTable(
                 name: "Categories");

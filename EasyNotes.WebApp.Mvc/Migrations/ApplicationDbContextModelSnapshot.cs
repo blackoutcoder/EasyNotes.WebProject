@@ -24,11 +24,9 @@ namespace EasyNotes.WebApp.Mvc.Migrations
 
             modelBuilder.Entity("EasyNotes.WebApp.Mvc.Models.Category", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
@@ -37,32 +35,22 @@ namespace EasyNotes.WebApp.Mvc.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("NoteId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("NoteId");
 
                     b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("EasyNotes.WebApp.Mvc.Models.Note", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
-
-                    b.Property<long?>("CategoryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("CategoryName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -309,17 +297,10 @@ namespace EasyNotes.WebApp.Mvc.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("EasyNotes.WebApp.Mvc.Models.Category", b =>
-                {
-                    b.HasOne("EasyNotes.WebApp.Mvc.Models.Note", null)
-                        .WithMany("Categories")
-                        .HasForeignKey("NoteId");
-                });
-
             modelBuilder.Entity("EasyNotes.WebApp.Mvc.Models.Note", b =>
                 {
                     b.HasOne("EasyNotes.WebApp.Mvc.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("Notes")
                         .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
@@ -376,9 +357,9 @@ namespace EasyNotes.WebApp.Mvc.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EasyNotes.WebApp.Mvc.Models.Note", b =>
+            modelBuilder.Entity("EasyNotes.WebApp.Mvc.Models.Category", b =>
                 {
-                    b.Navigation("Categories");
+                    b.Navigation("Notes");
                 });
 #pragma warning restore 612, 618
         }
