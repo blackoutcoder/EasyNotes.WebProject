@@ -1,5 +1,7 @@
 using EasyNotes.WebApp.Mvc.Data;
+using EasyNotes.WebApp.Mvc.Services.Email;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace EasyNotes.WebApp.Mvc
@@ -19,7 +21,8 @@ namespace EasyNotes.WebApp.Mvc
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
-
+            //TODO Email-service
+           // builder.Services.AddTransient<IEmailSender, EmailSender>(); 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -46,7 +49,7 @@ namespace EasyNotes.WebApp.Mvc
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
-
+           
             app.Run();
         }
     }

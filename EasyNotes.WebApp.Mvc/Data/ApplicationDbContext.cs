@@ -15,5 +15,5 @@ namespace EasyNotes.WebApp.Mvc.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<PublicNote> PublicNotes { get; set; }
     }
-
+   
 }

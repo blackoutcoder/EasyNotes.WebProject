@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-EasyNotes.WebApp.Mvc-AF3E6004-D657-46C6-AA8E-122D8807B094</UserSecretsId>
+    
   </PropertyGroup>
 
   <ItemGroup>

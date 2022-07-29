@@ -1,5 +1,6 @@
 ﻿@model Note
 
+
 <form method="post" asp-action="Edit">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
@@ -20,10 +21,17 @@
         <div class="mb-3">
             <label asp-for="Img"></label>
             <input asp-for="Img" class="form-control" />
+             <a asp-controller="Notes" asp-action="UploadImage" class="btn btn-primary mt-3">
+                <i class="bi bi-plus-circle"></i>  &nbsp;  Add Image
+            </a>
         </div>
         <div class="mb-3">
-            <label asp-for="Category"></label>
-            <input asp-for="Category" class="form-control" />
+            <label asp-for="Category.CategoryName"></label>
+            <input asp-for="Category.CategoryName" class="form-control" value=""/>
+            <span asp-validation-for="Category.CategoryName" class="text-danger"></span>
+            <label asp-for="Category.Description"></label>
+            <input asp-for="Category.Description" class="form-control" value=""/>
+            <span asp-validation-for="Category.Description" class="text-danger"></span>
         </div>
         <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
         <a asp-controller="Notes" asp-action="Index" class="btn btn-secondary" style="width:150px">

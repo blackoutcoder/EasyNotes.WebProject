@@ -13,7 +13,7 @@
             <h4 class="text-primary">Notes List</h4>
         </div>
         <div class="col-6 text-end">
-            <a asp-controller="PublicNotes" asp-action="Create" class="btn btn-primary ">
+            <a asp-controller="PublicNotes" asp-action="Create" class="btn btn-success ">
                 <i class="bi bi-plus-circle"></i>  &nbsp;  Create New Note
             </a>
         </div>
@@ -27,6 +27,7 @@
             <th>Name</th>
             <th>Message</th>
             <th>Create Date/Time</th>
+            <th>Send this code to anybody</th>
         </tr>
     </thead>
     <tbody>
@@ -41,6 +42,9 @@
                 </td>
                  <td width="50%">
                     @obj.CreateDate
+                </td>
+                <td width="50%">
+                    @obj.Id
                 </td>
             </tr>
         }
