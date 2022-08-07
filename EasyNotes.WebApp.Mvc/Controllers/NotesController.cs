@@ -1,4 +1,5 @@
 ﻿using EasyNotes.WebApp.Mvc.Data;
+using EasyNotes.WebApp.Mvc.Helpers;
 using EasyNotes.WebApp.Mvc.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +15,7 @@ namespace EasyNotes.WebApp.Mvc.Controllers
         {
             _context = context;
         }
-        [Authorize]
+        [Authorize(Roles = Roles.Executive)]
         public IActionResult Index()
         {
             var notesList = new List<Note>();
