@@ -2,6 +2,7 @@ using EasyNotes.WebApp.Mvc.Data;
 using EasyNotes.WebApp.Mvc.Services.Email;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace EasyNotes.WebApp.Mvc
@@ -18,9 +19,14 @@ namespace EasyNotes.WebApp.Mvc
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+           /* builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>();*/
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
             builder.Services.AddControllersWithViews();
+            builder.Services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
             //TODO Email-service
            // builder.Services.AddTransient<IEmailSender, EmailSender>(); 
             var app = builder.Build();

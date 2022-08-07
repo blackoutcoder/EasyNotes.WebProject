@@ -18,6 +18,7 @@ namespace EasyNotes.WebApp.Mvc.Models
         [DisplayName("Category")]
         [ForeignKey("CategoryId")]
         public Category ?Category { set; get; }
+        public Guid ? CategoryId { set; get; }
         public string? UserName { set; get; }
 
     }

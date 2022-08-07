@@ -1,0 +1,37 @@
+﻿@model EasyNotes.WebApp.Mvc.Models.ViewModels.NoteViewModel
+
+<form method="post" asp-action="DeletePOST">
+    <input asp-for="VNote.Id" hidden />
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h4 class="text-primary">Delete Note</h4>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="VNote.Name"></label>
+            <input asp-for="VNote.Name" disabled class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="VNote.Content"></label>
+            <input asp-for="VNote.Content" disabled class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="VNote.Img"></label>
+            <input asp-for="VNote.Img" disabled class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="VNote.Category"></label>
+            <input asp-for="VNote.Category" disabled class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-danger" style="width:150px">Delete</button>
+        <a asp-controller="NoteView" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Back to list
+        </a>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

@@ -1,0 +1,45 @@
+﻿@using EasyNotes.WebApp.Mvc.Models.ViewModels
+@model EasyNotes.WebApp.Mvc.Models.ViewModels.NoteViewModel
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h4 class="text-primary">Create Note</h4>
+            <hr />
+        </div>
+        <div asp-validation-summary="All"></div>
+        <div class="mb-3">
+            <label asp-for="VNote.Name"></label>
+            <input asp-for="VNote.Name" class="form-control" />
+            <span asp-validation-for="VNote.Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="VNote.Content"></label>
+            <input asp-for="VNote.Content" class="form-control" />
+            <span asp-validation-for="VNote.Content" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="VNote.Img"></label>
+            <input asp-for="VNote.Img" class="form-control" value=""/>
+            <a asp-controller="VNotes" asp-action="UploadImage" class="btn btn-outline-warning mt-3">
+                <i class="bi bi-plus-circle"></i>  &nbsp;  Add Image
+            </a>
+            <br/><br/>
+        </div>
+        <div class="mb-3 " >
+            <label asp-for="Categories"></label>
+            <select asp-for="VNote.CategoryId" asp-items="Model.CSelectListItem(Model.Categories)" class="form-control" ></select>
+        </div>
+        <br/><br/>
+        <button type="submit" class="btn btn-outline-success" style="width:150px">Create</button>
+        <a asp-controller="NoteView" asp-action="Index" class="btn btn-outline-secondary" style="width:180px">
+            Back to list
+        </a>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
