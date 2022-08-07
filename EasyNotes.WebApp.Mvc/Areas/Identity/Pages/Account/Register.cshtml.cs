@@ -22,6 +22,7 @@ using Microsoft.Extensions.Logging;
 
 namespace EasyNotes.WebApp.Mvc.Areas.Identity.Pages.Account
 {
+
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;

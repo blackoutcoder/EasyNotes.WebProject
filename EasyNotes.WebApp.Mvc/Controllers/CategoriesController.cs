@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using EasyNotes.WebApp.Mvc.Data;
 using EasyNotes.WebApp.Mvc.Models;
 using Microsoft.AspNetCore.Authorization;
+using EasyNotes.WebApp.Mvc.Helpers;
 
 namespace EasyNotes.WebApp.Mvc.Controllers
 {
@@ -20,7 +21,7 @@ namespace EasyNotes.WebApp.Mvc.Controllers
             _context = context;
         }
 
-        [Authorize]
+        [Authorize(Roles = Roles.Executive)]
         public IActionResult Index()
         {
             var categoryList = new List<Category>();

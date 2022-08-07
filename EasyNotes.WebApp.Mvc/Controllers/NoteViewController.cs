@@ -1,6 +1,8 @@
 ﻿using EasyNotes.WebApp.Mvc.Data;
+using EasyNotes.WebApp.Mvc.Helpers;
 using EasyNotes.WebApp.Mvc.Models;
 using EasyNotes.WebApp.Mvc.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,7 +23,7 @@ namespace EasyNotes.WebApp.Mvc.Controllers
                 VNote = new Note()
             };
         }
-
+        [Authorize(Roles = Roles.Executive)]
         public IActionResult Index()
         {
             
