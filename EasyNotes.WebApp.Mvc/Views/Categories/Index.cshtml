@@ -3,7 +3,7 @@
     ViewData["Title"] = "Categories";
 }
 
-<h1>Categories</h1>
+<h1 class="mt-5">Categories</h1>
 
 <div class="container p-3">
     <div class="row pt-4">
@@ -17,8 +17,10 @@
         </div>
     </div>
     <br/>
-
-<table class="table table-bordered table-striped" style="width:100%">
+<form asp-action="ShowSearchResults" class="mb-2">
+    <input asp-controller="Categories" asp-action="ShowSearchForm" type="submit" value="Search" class="btn btn-outline-info mb-2" />
+ </form>
+<table class="table table-bordered table-striped " style="width:100%">
     <thead>
         <tr>
             <th>Name</th>

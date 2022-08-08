@@ -44,6 +44,18 @@ namespace EasyNotes.WebApp.Mvc.Controllers
             var model = _db.Notes.Include(m => m.Category);
             return View(model) ;*/
         }
+
+        public async Task<IActionResult> ShowSearchForm()
+        {
+            return View();
+        }
+
+        // PoST: Notes/ShowSearchResults
+
+        public async Task<IActionResult> ShowSearchResults(String SearchPhrase)
+        {
+            return View("Index", await _db.Notes.Where(j => j.Name.Contains(SearchPhrase)).ToListAsync());
+        }
         //HTTPGET
         public IActionResult Create()
         {

@@ -6,18 +6,28 @@ namespace EasyNotes.WebApp.Mvc.Controllers
 {
     public class PublicNotesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _db;
 
         public PublicNotesController(ApplicationDbContext context)
         {
-            _context = context;
+            _db = context;
         }
         public IActionResult Index()
         {
-            IEnumerable<PublicNote> objNotesList = _context.PublicNotes.ToList();
+            IEnumerable<PublicNote> objNotesList = _db.PublicNotes.ToList();
             return View(objNotesList);
         }
+        public async Task<IActionResult> ShowSearchForm()
+        {
+            return View();
+        }
 
+        // PoST: Notes/ShowSearchResults
+
+        public async Task<IActionResult> ShowSearchResults(String SearchPhrase)
+        {
+            return View("Index",  _db.PublicNotes.Where(j => j.Id.Equals(SearchPhrase)).ToList());
+        }
         //GET
         public IActionResult Create()
         {
@@ -34,8 +44,8 @@ namespace EasyNotes.WebApp.Mvc.Controllers
             {
                 obj.Id = Guid.NewGuid();
                 obj.CreateDate = DateTime.Now;
-                _context.PublicNotes.Add(obj);
-                _context.SaveChanges();
+                _db.PublicNotes.Add(obj);
+                _db.SaveChanges();
                 TempData["success"] = "Note successfully created!";
                 return RedirectToAction("Index");
             }

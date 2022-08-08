@@ -14,11 +14,11 @@ namespace EasyNotes.WebApp.Mvc.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _db;
 
         public CategoriesController(ApplicationDbContext context)
         {
-            _context = context;
+            _db = context;
         }
 
         [Authorize(Roles = Roles.Executive)]
@@ -27,7 +27,7 @@ namespace EasyNotes.WebApp.Mvc.Controllers
             var categoryList = new List<Category>();
             var userName = User.Identity.Name;
             //IEnumerable<Note> objNotesList = _context.Notes.ToList();
-            foreach (Category category in _context.Categories)
+            foreach (Category category in _db.Categories)
             {
                 if (category.UserName == userName)
                 {
@@ -36,7 +36,17 @@ namespace EasyNotes.WebApp.Mvc.Controllers
             }
             return View(categoryList);
         }
+        public async Task<IActionResult> ShowSearchForm()
+        {
+            return View();
+        }
 
+        // PoST: Notes/ShowSearchResults
+
+        public async Task<IActionResult> ShowSearchResults(String SearchPhrase)
+        {
+            return View("Index", await _db.Categories.Where(j => j.CategoryName.Contains(SearchPhrase)).ToListAsync());
+        }
         //GET
         public IActionResult Create()
         {
@@ -54,8 +64,8 @@ namespace EasyNotes.WebApp.Mvc.Controllers
                 obj.Id = Guid.NewGuid();
                 obj.Notes = new List<Note>();
                 obj.UserName = User.Identity.Name;
-                _context.Categories.Add(obj);
-                _context.SaveChanges();
+                _db.Categories.Add(obj);
+                _db.SaveChanges();
                 TempData["success"] = "Category successfully created!";
                 return RedirectToAction("Index");
             }
@@ -69,7 +79,7 @@ namespace EasyNotes.WebApp.Mvc.Controllers
             {
                 return NotFound();
             }
-            var categoryFromDb = _context.Categories.Find(id);
+            var categoryFromDb = _db.Categories.Find(id);
             /*var noteFromDbFirst = _context.Notes.FirstOrDefault(x => x.Id == id);
             var noteFromDbSingle = _context.Notes.SingleOrDefault(x => x.Id == id);*/
 
@@ -90,8 +100,8 @@ namespace EasyNotes.WebApp.Mvc.Controllers
             if (ModelState.IsValid)
             {
                 obj.UserName = User.Identity.Name.ToLower();
-                _context.Categories.Update(obj);
-                _context.SaveChanges();
+                _db.Categories.Update(obj);
+                _db.SaveChanges();
                 TempData["success"] = "Category successfully updated!";
                 return RedirectToAction("Index");
             }
@@ -106,7 +116,7 @@ namespace EasyNotes.WebApp.Mvc.Controllers
             {
                 return NotFound();
             }
-            var categoryFromDb = _context.Categories.Find(id);
+            var categoryFromDb = _db.Categories.Find(id);
             /*var noteFromDbFirst = _context.Notes.FirstOrDefault(x => x.Id == id);
             var noteFromDbSingle = _context.Notes.SingleOrDefault(x => x.Id == id);*/
 
@@ -122,13 +132,13 @@ namespace EasyNotes.WebApp.Mvc.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(Guid id)
         {
-            var obj = _context.Categories.Find(id);
+            var obj = _db.Categories.Find(id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _context.Categories.Remove(obj);
-            _context.SaveChanges();
+            _db.Categories.Remove(obj);
+            _db.SaveChanges();
             TempData["success"] = "Category successfully deleted!";
             return RedirectToAction("Index");
         }
