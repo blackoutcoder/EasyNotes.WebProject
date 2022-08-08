@@ -3,7 +3,7 @@
     ViewData["Title"] = "Public Notes";
 }
 
-<h1>Public Notes</h1>
+<h1 class="mt-5">Public Notes</h1>
 
 <h3>Your notes will stay here forever!</h3>
 
@@ -20,7 +20,9 @@
     </div>
     <br/>
    
-
+<form asp-action="ShowSearchResults">
+    <input asp-controller="PublicNotes" asp-action="ShowSearchForm" type="submit" value="Search" class="btn btn-outline-info mb-2" />
+ </form>  
 <table class="table table-bordered table-striped" style="width:100%">
     <thead>
         <tr>
