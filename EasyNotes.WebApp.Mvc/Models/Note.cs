@@ -20,6 +20,5 @@ namespace EasyNotes.WebApp.Mvc.Models
         public Category ?Category { set; get; }
         public Guid ? CategoryId { set; get; }
         public string? UserName { set; get; }
-
     }
 }
