@@ -53,7 +53,7 @@ namespace EasyNotes.WebApp.Mvc.Controllers
             {
                 obj.Id = Guid.NewGuid();
                 obj.Notes = new List<Note>();
-                obj.UserName = User.Identity.Name.ToLower();
+                obj.UserName = User.Identity.Name;
                 _context.Categories.Add(obj);
                 _context.SaveChanges();
                 TempData["success"] = "Category successfully created!";

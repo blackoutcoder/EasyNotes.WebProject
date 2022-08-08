@@ -1,7 +1,7 @@
 ﻿@using EasyNotes.WebApp.Mvc.Models.ViewModels
 @model EasyNotes.WebApp.Mvc.Models.ViewModels.NoteViewModel
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
             <h4 class="text-primary">Create Note</h4>
@@ -20,10 +20,10 @@
         </div>
         <div class="mb-3">
             <label asp-for="VNote.Img"></label>
-            <input asp-for="VNote.Img" class="form-control" value=""/>
-            <a asp-controller="VNotes" asp-action="UploadImage" class="btn btn-outline-warning mt-3">
+            <input type="file" name="files" class="form-control"/>
+            @*<a asp-controller="VNotes" asp-action="UploadImage" class="btn btn-outline-warning mt-3">
                 <i class="bi bi-plus-circle"></i>  &nbsp;  Add Image
-            </a>
+            </a>*@
             <br/><br/>
         </div>
         <div class="mb-3 " >

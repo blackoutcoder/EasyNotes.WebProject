@@ -11,6 +11,7 @@ namespace EasyNotes.WebApp.Mvc
     {
         public static void Main(string[] args)
         {
+            
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -26,9 +27,11 @@ namespace EasyNotes.WebApp.Mvc
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
             builder.Services.AddControllersWithViews();
+
+            //builder.Services.AddScoped<IDBInitializer, DBInitializer>();
             builder.Services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
             //TODO Email-service
-           // builder.Services.AddTransient<IEmailSender, EmailSender>(); 
+            // builder.Services.AddTransient<IEmailSender, EmailSender>(); 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -51,12 +54,16 @@ namespace EasyNotes.WebApp.Mvc
             app.UseAuthentication();
             app.UseAuthorization();
 
+
+
+
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
-           
+
             app.Run();
         }
+
     }
 }
